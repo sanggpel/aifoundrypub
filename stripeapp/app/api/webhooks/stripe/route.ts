@@ -1,14 +1,12 @@
 import { headers } from "next/headers"
 import { type NextRequest, NextResponse } from "next/server"
-import Stripe from "stripe"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
-})
+import type Stripe from "stripe"
+import { getStripe } from "@/lib/get-stripe"
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 export async function POST(req: NextRequest) {
+  const stripe = getStripe()
   const body = await req.text()
   const signature = headers().get("stripe-signature")!
 

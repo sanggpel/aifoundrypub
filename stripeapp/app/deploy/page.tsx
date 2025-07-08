@@ -41,7 +41,7 @@ export default function DeployPage() {
       description: "Recommended for Next.js apps",
       logo: "▲",
       color: "bg-black text-white",
-      popular: false,
+      popular: true,
       deployUrl: "https://vercel.com/new",
       docs: "https://vercel.com/docs",
     },

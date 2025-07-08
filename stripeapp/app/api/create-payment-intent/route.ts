@@ -1,13 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server"
-import Stripe from "stripe"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
-})
+import { getStripe } from "@/lib/get-stripe"
 
 export async function POST(req: NextRequest) {
   try {
     const { amount, currency = "usd", metadata = {} } = await req.json()
+
+    const stripe = getStripe()
 
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({

@@ -199,7 +199,7 @@ Built-in analytics dashboard tracks:
 
 ## 🚀 Deployment
 
-### Vercel 
+### Vercel (Recommended)
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Add environment variables in Vercel dashboard

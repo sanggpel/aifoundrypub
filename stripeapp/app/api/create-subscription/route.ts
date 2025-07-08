@@ -1,13 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server"
-import Stripe from "stripe"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
-})
+import type Stripe from "stripe"
+import { getStripe } from "@/lib/get-stripe"
 
 export async function POST(req: NextRequest) {
   try {
     const { customerId, priceId, quantity = 1, trialPeriodDays, metadata = {} } = await req.json()
+
+    const stripe = getStripe()
 
     // Create the subscription
     const subscription = await stripe.subscriptions.create({
